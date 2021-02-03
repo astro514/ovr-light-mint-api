@@ -5,7 +5,7 @@ const APIError = require('../utils/APIError');
 const { Schema } = mongoose;
 
 /**
- * Reward Schema
+ * Merkle Schema
  * @private
  */
 const rewardSchema = Schema(
@@ -67,23 +67,23 @@ rewardSchema.method({
  */
 rewardSchema.statics = {
   /**
-   * Get Reward
-   * @param {ObjectId} id - The objectId of reward.
-   * @returns {Promise<Reward, APIError>}
+   * Get Merkle
+   * @param {ObjectId} id - The objectId of merkle.
+   * @returns {Promise<Merkle, APIError>}
    */
   async get(id) {
     try {
-      let reward;
+      let merkle;
 
       if (mongoose.Types.ObjectId.isValid(id)) {
-        reward = await this.findById(id).exec();
+        merkle = await this.findById(id).exec();
       }
-      if (reward) {
-        return reward;
+      if (merkle) {
+        return merkle;
       }
 
       throw new APIError({
-        message: 'Reward does not exist',
+        message: 'Merkle does not exist',
         status: httpStatus.NOT_FOUND,
       });
     } catch (error) {
@@ -91,19 +91,19 @@ rewardSchema.statics = {
     }
   },
   /**
-   * Get Reward
-   * @param {String} walletAddress - The walletAddress of reward.
-   * @returns {Promise<Reward, APIError>}
+   * Get Merkle
+   * @param {String} walletAddress - The walletAddress of merkle.
+   * @returns {Promise<Merkle, APIError>}
    */
   async getByAddress(walletAddress) {
     try {
-      const reward = await this.findOne({ walletAddress }).exec();
-      if (reward) {
-        return reward;
+      const merkle = await this.findOne({ walletAddress }).exec();
+      if (merkle) {
+        return merkle;
       }
 
       throw new APIError({
-        message: 'Reward does not exist',
+        message: 'Merkle does not exist',
         status: httpStatus.NOT_FOUND,
       });
     } catch (error) {
@@ -115,4 +115,4 @@ rewardSchema.statics = {
 /**
  * @typedef rewardSchema
  */
-module.exports = mongoose.model('Reward', rewardSchema);
+module.exports = mongoose.model('Merkle', rewardSchema);

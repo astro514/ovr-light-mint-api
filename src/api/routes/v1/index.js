@@ -1,5 +1,5 @@
 const express = require('express');
-const rewardRoutes = require('./reward.route');
+const merkleRoutes = require('./merkle.route');
 
 const router = express.Router();
 
@@ -8,6 +8,6 @@ const router = express.Router();
  */
 router.get('/status', (req, res) => res.send('OK'));
 
-router.use('/reward', rewardRoutes);
+router.use('/merkle', merkleRoutes);
 
 module.exports = router;
