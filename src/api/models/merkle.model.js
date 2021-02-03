@@ -90,26 +90,6 @@ rewardSchema.statics = {
       throw error;
     }
   },
-  /**
-   * Get Merkle
-   * @param {String} walletAddress - The walletAddress of merkle.
-   * @returns {Promise<Merkle, APIError>}
-   */
-  async getByAddress(walletAddress) {
-    try {
-      const merkle = await this.findOne({ walletAddress }).exec();
-      if (merkle) {
-        return merkle;
-      }
-
-      throw new APIError({
-        message: 'Merkle does not exist',
-        status: httpStatus.NOT_FOUND,
-      });
-    } catch (error) {
-      throw error;
-    }
-  },
 };
 
 /**
